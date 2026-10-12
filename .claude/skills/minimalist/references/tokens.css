@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+/*
+  Minimalist design tokens (nilai default = LukaCare)
+  Ganti hex di :root dan dua blok gelap; nama token jangan diubah.
+  - canvas : latar halaman, sedikit berwarna (bukan putih murni)
+  - primary: SATU warna aksi utama yang tenang (LukaCare: hijau pinus)
+  - accent : warna ciri khas, dipakai hemat — hero, logo, badge hitungan (LukaCare: plester)
+  - alert  : merah hanya untuk bahaya, darurat, dan aksi destruktif
+  - caution/success: status, selalu dipasangkan dengan varian -soft
+*/
+:root {
+  --mx-canvas: #f5f7f4;
+  --mx-surface: #ffffff;
+  --mx-sunken: #ecf0eb;
+  --mx-ink: #12312c;
+  --mx-ink-soft: #2f4c46;
+  --mx-muted: #566b66;
+  --mx-line: #d9e1db;
+  --mx-primary: #0e6b58;
+  --mx-primary-strong: #0a5244;
+  --mx-primary-soft: #dcefe7;
+  --mx-on-primary: #ffffff;
+  --mx-accent: #e9be93;
+  --mx-accent-deep: #c98f5c;
+  --mx-accent-soft: #f8eadb;
+  --mx-alert: #c8283a;
+  --mx-alert-soft: #fbe7e9;
+  --mx-caution: #9a5a06;
+  --mx-caution-soft: #fdf0dc;
+  --mx-success: #22865f;
+  --mx-success-soft: #e1f4ea;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --mx-canvas: #0d1916;
+    --mx-surface: #13221e;
+    --mx-sunken: #0a1412;
+    --mx-ink: #e4eeea;
+    --mx-ink-soft: #c3d3cd;
+    --mx-muted: #94aaa3;
+    --mx-line: #24362f;
+    --mx-primary: #4cc3a0;
+    --mx-primary-strong: #74d6b7;
+    --mx-primary-soft: #153a30;
+    --mx-on-primary: #052019;
+    --mx-accent: #cf9f71;
+    --mx-accent-deep: #9c6d43;
+    --mx-accent-soft: #2e251b;
+    --mx-alert: #ff6b78;
+    --mx-alert-soft: #3a1a1f;
+    --mx-caution: #f2b25c;
+    --mx-caution-soft: #33260f;
+    --mx-success: #5cd3a1;
+    --mx-success-soft: #14332a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --mx-canvas: #0d1916;
+  --mx-surface: #13221e;
+  --mx-sunken: #0a1412;
+  --mx-ink: #e4eeea;
+  --mx-ink-soft: #c3d3cd;
+  --mx-muted: #94aaa3;
+  --mx-line: #24362f;
+  --mx-primary: #4cc3a0;
+  --mx-primary-strong: #74d6b7;
+  --mx-primary-soft: #153a30;
+  --mx-on-primary: #052019;
+  --mx-accent: #cf9f71;
+  --mx-accent-deep: #9c6d43;
+  --mx-accent-soft: #2e251b;
+  --mx-alert: #ff6b78;
+  --mx-alert-soft: #3a1a1f;
+  --mx-caution: #f2b25c;
+  --mx-caution-soft: #33260f;
+  --mx-success: #5cd3a1;
+  --mx-success-soft: #14332a;
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@theme inline {
+  --color-canvas: var(--mx-canvas);
+  --color-surface: var(--mx-surface);
+  --color-sunken: var(--mx-sunken);
+  --color-ink: var(--mx-ink);
+  --color-ink-soft: var(--mx-ink-soft);
+  --color-muted: var(--mx-muted);
+  --color-line: var(--mx-line);
+  --color-primary: var(--mx-primary);
+  --color-primary-strong: var(--mx-primary-strong);
+  --color-primary-soft: var(--mx-primary-soft);
+  --color-on-primary: var(--mx-on-primary);
+  --color-accent: var(--mx-accent);
+  --color-accent-deep: var(--mx-accent-deep);
+  --color-accent-soft: var(--mx-accent-soft);
+  --color-alert: var(--mx-alert);
+  --color-alert-soft: var(--mx-alert-soft);
+  --color-caution: var(--mx-caution);
+  --color-caution-soft: var(--mx-caution-soft);
+  --color-success: var(--mx-success);
+  --color-success-soft: var(--mx-success-soft);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--mx-canvas);
+    color: var(--mx-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--mx-primary);
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
+  ::selection {
+    background: var(--mx-accent);
+    color: #12312c; /* sengaja tetap gelap: accent cerah di kedua mode */
+  }
+}
+
+@layer components {
+  /* Motif identitas (opsional, hanya hero & logo). LukaCare: sayap plester berpori */
+  .motif-wing {
+    background-color: var(--mx-accent);
+    background-image: radial-gradient(circle, var(--mx-accent-deep) 1.25px, transparent 1.7px);
+    background-size: 11px 11px;
+    background-position: 3px 3px;
+  }
+  /* Bantalan tengah dengan tekstur kisi halus */
+  .motif-pad {
+    background-color: var(--mx-accent-soft);
+    background-image:
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--mx-accent-deep) 10%, transparent) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--mx-accent-deep) 10%, transparent) 0 1px, transparent 1px 7px);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Satu-satunya momen gerak khas: hero "menempel" saat beranda dibuka */
+@keyframes motif-stick {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) rotate(-3deg) scale(1.03);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.motif-stick {
+  animation: motif-stick 720ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: 30% 50%;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.toast-in {
+  animation: toast-in 200ms ease-out both;
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.sheet-in {
+  animation: sheet-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 180ms ease-out both;
+}
+
+@keyframes step-done {
+  0% {
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.step-done {
+  animation: step-done 260ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motif-stick,
+  .toast-in,
+  .sheet-in,
+  .fade-in,
+  .step-done {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
