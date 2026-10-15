@@ -1,7 +1,8 @@
 {
   "enabledPlugins": {
     "caveman@caveman": true,
-    "taste-skill@taste-skill": true
+    "taste-skill@taste-skill": true,
+    "hostinger@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -14,6 +15,12 @@
       "source": {
         "source": "github",
         "repo": "Leonxlnx/taste-skill"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
       }
     }
   }
